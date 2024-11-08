@@ -1,22 +1,24 @@
-/* src/pages/Home.css */
-
 @keyframes gradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-      }
+  0% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 
-  .animated-gradient {
-    background: linear-gradient(45deg, #1a1a2e, #42043a, #420872, #21043b);
-    background-size: 300% 300%;
-    animation: gradientAnimation 20s ease infinite;
-  }
+.animated-gradient {
+  background: linear-gradient(45deg, #1a1a2e, #42043a, #420872, #21043b);
+  background-size: 300% 300%;
+  animation: gradientAnimation 20s ease infinite;
+}
+
+body, html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  margin: 0; /* Ensure no default margins that could cause overflow */
+  padding: 0;
+}
