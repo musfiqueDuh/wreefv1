@@ -20,7 +20,7 @@ const Navbar = () => {
         animate="visible"
         transition={{ staggerChildren: 0.2 }}
       >
-        {['Process', 'Services', 'Benefits', 'Pricing', 'FAQs'].map((item, index) => (
+        {['Process', 'Services', 'Benefits', 'Testimonials', 'FAQs'].map((item, index) => (
           <motion.li
             key={item}
             variants={linkVariants(index)}

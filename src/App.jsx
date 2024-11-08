@@ -1,15 +1,22 @@
+// src/App.jsx
 
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import CTAPage from './pages/CTAPage';
 
 function App() {
+  const location = useLocation();
+
   return (
     <>
-      <Navbar />
+      {/* Render Navbar only if not on CTAPage */}
+      {location.pathname !== '/cta' && <Navbar />}
+
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* We'll add the other routes back once those pages are created */}
+        <Route path="/cta" element={<CTAPage />} />
+        {/* Add additional routes here as you create more pages */}
       </Routes>
     </>
   );
