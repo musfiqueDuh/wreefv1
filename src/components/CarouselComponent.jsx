@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const images = [
     {
         src: '/static/rocket.webp', // Replace with actual paths
-        caption: "Creativity Meets Automation -Content that works smarter"
+        caption: "Creativity Meets Automation - Content that works smarter"
     },
     {
         src: '/static/yoman.webp',
@@ -28,8 +28,7 @@ const CarouselComponent = () => {
     }, []);
 
     return (
-        <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-lg">
-            {/* Gradient overlay */}
+        <div className="relative w-full h-60 lg:h-full flex items-center justify-center overflow-hidden rounded-lg">
             <div className="absolute inset-0 bg-gradient-to-t from-violet-950 via-transparent to-transparent z-10"></div>
 
             <AnimatePresence>
@@ -52,11 +51,10 @@ const CarouselComponent = () => {
                     )
                 )}
             </AnimatePresence>
-             
-            {/* Caption in top center with overlay */}
-            <div className="absolute bottom-20 left-8 z-20 text-white text-6xl font-semibold text-left px-4">
-    {images[currentIndex].caption}
-</div>
+
+            <div className="absolute bottom-4 lg:bottom-20 left-4 lg:left-8 z-20 text-white text-2xl lg:text-6xl font-semibold px-4">
+                {images[currentIndex].caption}
+            </div>
         </div>
     );
 };

@@ -1,12 +1,11 @@
 // src/components/SignUpForm.jsx
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { db } from "../firebase"; // Adjust path if needed
+import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 import BookingConfirmationPopup from './BookingConfirmationPopup';
 
 const SignUpForm = () => {
-  // State for form data
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,23 +14,20 @@ const SignUpForm = () => {
     notes: ""
   });
 
-  // State for pop-up visibility
   const [isPopupVisible, setIsPopupVisible] = useState(false);
 
-  // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await addDoc(collection(db, "meetingBookings"), formData);
       setFormData({ name: "", email: "", meetingDate: "", purpose: "", notes: "" });
-      setIsPopupVisible(true); // Show pop-up
+      setIsPopupVisible(true);
     } catch (error) {
       console.error("Error booking meeting: ", error);
       alert("There was an error booking the meeting.");
@@ -40,13 +36,12 @@ const SignUpForm = () => {
 
   return (
     <>
-      {/* Conditional Rendering of the Pop-Up */}
       {isPopupVisible && <BookingConfirmationPopup onClose={() => setIsPopupVisible(false)} />}
 
-      <div className="flex flex-col items-center justify-center min-h-screen bg-violet-100 p-6">
+      <div className="flex flex-col items-center justify-center w-full lg:h-screen bg-violet-100 p-6">
         <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold text-gray-800">Book a Meeting</h2>
-          <p className="text-gray-500 text-sm mt-1">
+          <h2 className="text-2xl lg:text-3xl font-bold text-gray-800">Book a Meeting</h2>
+          <p className="text-gray-500 text-xs lg:text-sm mt-1">
             Enter your details to book a session with us
           </p>
         </div>
@@ -55,11 +50,11 @@ const SignUpForm = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg space-y-6"
+          className="w-full max-w-md bg-white p-4 lg:p-8 rounded-lg shadow-lg space-y-6"
         >
           <form className="space-y-4" onSubmit={handleSubmit}>
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-              <label className="text-sm font-medium text-gray-600">Name</label>
+              <label className="text-xs lg:text-sm font-medium text-gray-600">Name</label>
               <input
                 type="text"
                 name="name"
@@ -72,7 +67,7 @@ const SignUpForm = () => {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-              <label className="text-sm font-medium text-gray-600">Email address</label>
+              <label className="text-xs lg:text-sm font-medium text-gray-600">Email address</label>
               <input
                 type="email"
                 name="email"
@@ -85,7 +80,7 @@ const SignUpForm = () => {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-              <label className="text-sm font-medium text-gray-600">Meeting Date & Time</label>
+              <label className="text-xs lg:text-sm font-medium text-gray-600">Meeting Date & Time</label>
               <input
                 type="datetime-local"
                 name="meetingDate"
@@ -97,7 +92,7 @@ const SignUpForm = () => {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-              <label className="text-sm font-medium text-gray-600">Purpose of Meeting</label>
+              <label className="text-xs lg:text-sm font-medium text-gray-600">Purpose of Meeting</label>
               <select
                 name="purpose"
                 value={formData.purpose}
@@ -113,7 +108,7 @@ const SignUpForm = () => {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-              <label className="text-sm font-medium text-gray-600">Additional Notes</label>
+              <label className="text-xs lg:text-sm font-medium text-gray-600">Additional Notes</label>
               <textarea
                 name="notes"
                 value={formData.notes}
@@ -135,13 +130,13 @@ const SignUpForm = () => {
           </form>
         </motion.div>
 
-        <div className="text-center mt-6">
-          <p className="text-xs text-gray-500">
+        <div className="text-center mt-4 lg:mt-6">
+          <p className="text-xs lg:text-xs text-gray-500">
             By booking, you agree to our{' '}
             <a href="#" className="underline text-violet-500">Privacy Policy</a> and{' '}
             <a href="#" className="underline text-violet-500">Terms of Service</a>.
           </p>
-          <a href="/" className="text-violet-600 font-semibold text-sm mt-4 block">
+          <a href="/" className="text-violet-600 font-semibold text-sm mt-2 block">
             Go back to Homepage
           </a>
         </div>
